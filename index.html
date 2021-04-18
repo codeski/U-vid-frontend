@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>U-vid</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <div class="container">
+      <form class="add-video-form">
+        <h3>Add a Video!</h3>
+        <input type="text" name="title" value="" placeholder="Enter a title..." class="input-text" />
+        <br />
+        <input type="text" name="embed" value="" placeholder="Add embed code..." class="input-text"/>
+        <br />
+        <input type="text" name="notes" rows="4" cols="50" value="" placeholder="Add some notes..." class="input-text"/>
+        <br />
+        <input type="text" name="category" value="" placeholder="Add a category..." class="input-text"/> or Select:
+        <select name="category" id="category">
+            <option value="" placeholder="Select">Select</option>
+            <option value="delete">delete later</option>
+        </select>
+        <br />
+        <input type="submit" name="submit" value="Add New Video" class="submit"/>
+      </form>
+    </div>
+
+    <div id="video-collection">
+        <ul id="video-list">
+            
+        </ul>
+
+    </div>
+    
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="video.js"></script>
+    <script type="text/javascript" src="category.js"></script>
+  </body>
+</html>
