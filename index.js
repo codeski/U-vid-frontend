@@ -3,9 +3,12 @@ const BASE_URL = "http://localhost:3000"
 
 const videoForm = document.getElementById("add-video-form")
 videoForm.addEventListener("submit", addNewVideo)
+let categoryDrop = document.getElementById('category_select')
+
+
 
 fetchCategories()
-setTimeout(fetchVideos, 300)
+setTimeout(fetchVideos, 400)
 
 function fetchCategories(){
     fetch(`${BASE_URL}/categories`)
@@ -14,6 +17,7 @@ function fetchCategories(){
         data.data.forEach(category => {
             let c = new Category(category.id, category.attributes.name)
             c.addCategoryToDom()
+            c.addToDropDown()
         }) 
     })  
 }
@@ -37,16 +41,15 @@ function addNewVideo(e){
     let notes = document.getElementById("notes").value
     let category = document.getElementById("category_input").value
     let categoryDrop = document.getElementById("category_select")
-    let selection = categoryDrop.options[categoryDrop.selectedIndex].text
+    // let selection = categoryDrop.options[categoryDrop.selectedIndex].text  
+    let category_id
+    let video
 
-    let c
-    if (selection !== Select){
-        c = categoryDrop.value
-    } else {
+    if (categoryDrop.value === ""){
         let cat = {
             name: category
         }
-
+        // debugger
         fetch(`${BASE_URL}/categories`, {
             method: "POST",
             headers: {
@@ -56,25 +59,33 @@ function addNewVideo(e){
             body: JSON.stringify(cat)
         })
         .then(resp => resp.json())
-        .then(category => {
-            c = new Category(category.id, category.attributes.name)
+        .then(data => {
+            c = new Category(data.data.id, data.data.attributes.name)
             c.addCategoryToDom()
-            console.log(c)
+            c.addToDropDown()
+            // debugger
+            video = {
+                title: title,
+                embed: embed,
+                notes: notes,
+                category_id: c.id
+            }
+            createVideo(video)
         })
+        
+    } else {
+        category_id = categoryDrop.value
+        video = {
+            title: title,
+            embed: embed,
+            notes: notes,
+            category_id: parseInt(category_id)
+        }
+        createVideo(video)
     }
-
-    let video = {
-        title: title,
-        embed: embed,
-        notes: notes,
-        category_id: c
-    }
-
-    setTimeout(getCreatedVideo(video), 300)
-    // console.log(title, embed, notes, category, selection)
 }
 
-function getCreatedVideo(video){
+function createVideo(video){
     fetch(`${BASE_URL}/videos`, {
         method: "POST",
         headers: {
@@ -84,9 +95,9 @@ function getCreatedVideo(video){
         body: JSON.stringify(video)
     })
     .then(resp => resp.json())
-    .then(video => {
-        let v = video.attributes
-        let vid = new Video(video.id, v.title, v.embed, v.category_id, v.notes, v.likes)
+    .then(data => {
+        let v = data.data.attributes
+        let vid = new Video(data.data.id, v.title, v.embed, v.category_id, v.notes, v.likes)
         vid.addVideoToDom()
     })
 }

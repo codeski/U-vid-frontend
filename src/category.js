@@ -14,4 +14,12 @@ class Category {
         `
         videoList.append(div)
     }
+
+    addToDropDown(){
+        
+        const option = document.createElement('option')
+        option.value  = this.id 
+        option.innerText = this.name
+        categoryDrop.append(option)
+    }
 }
