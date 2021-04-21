@@ -102,6 +102,22 @@ function createVideo(video){
     })
 }
 
+// function deleteVideo(){
+//     let videoId = parseInt(event.target.dataset.id.split("_")[1])
 
+//     fetch(`${BASE_URL}/videos/${videoId}`, {
+//         method: 'DELETE'
+//     })
+// }
+
+// function deleteCategory(){
+//     let categoryId = parseInt(event.target.dataset.id.split("_")[1])
+
+//     fetch(`${BASE_URL}/videos/${categoryId}`, {
+//         method: 'DELETE'
+//     })
+
+//     this.location.reload()
+// }
 
 

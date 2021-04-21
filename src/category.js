@@ -10,7 +10,7 @@ class Category {
 
         div.innerHTML = `
             <h2>${this.name}</h2>
-            <ul id="category_${this.id}"></ul>
+            <ul id="category-${this.id}"></ul>
         `
         videoList.append(div)
     }
