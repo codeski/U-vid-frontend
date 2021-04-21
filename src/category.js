@@ -11,12 +11,17 @@ class Category {
         Category.all.push(this)
     }
 
-    addCategoryToDom() {
+    createCategory(){
         this.div.innerHTML = `
             <h2>${this.name}</h2>
             <ul id="category-${this.id}"></ul>
         `
-        videoList.append(this.div)
+
+        return this.div
+    }
+    
+    addCategoryToDom() {
+        videoList.append(this.createCategory())
     }
 
     addToDropDown(){

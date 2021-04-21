@@ -5,7 +5,8 @@ const videoForm = document.getElementById("add-video-form")
 videoForm.addEventListener("submit", addNewVideo)
 let categoryDrop = document.getElementById('category_select')
 
-fetchCategories()
+CategoryApi.fetchCategories()
+
 setTimeout(fetchVideos, 400)
 
 function fetchCategories(){
