@@ -5,8 +5,6 @@ const videoForm = document.getElementById("add-video-form")
 videoForm.addEventListener("submit", addNewVideo)
 let categoryDrop = document.getElementById('category_select')
 
-
-
 fetchCategories()
 setTimeout(fetchVideos, 400)
 
@@ -27,8 +25,7 @@ function fetchVideos(){
     .then(resp => resp.json())
     .then(data => {
         data.data.forEach(video => {
-            let v = video.attributes
-            let vid = new Video(video.id, v.title, v.embed, v.category_id, v.notes, v.likes)
+            let vid = new Video({id: video.id, ...video.attributes})
             vid.addVideoToDom()
         })
     })
@@ -42,7 +39,6 @@ function addNewVideo(e){
     let category = document.getElementById("category_input").value
     let categoryDrop = document.getElementById("category_select")
     // let selection = categoryDrop.options[categoryDrop.selectedIndex].text  
-    let category_id
     let video
 
     if (categoryDrop.value === ""){
@@ -74,7 +70,7 @@ function addNewVideo(e){
         })
         
     } else {
-        category_id = categoryDrop.value
+        let category_id = categoryDrop.value
         video = {
             title: title,
             embed: embed,

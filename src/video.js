@@ -2,8 +2,9 @@ class Video {
 
     static all = []
 
-    constructor(id, title, embed, category_id, notes, likes){
-        this.id = id
+    constructor({id, title, embed, category_id, notes, likes}){
+        // debugger
+        this.id = parseInt(id)
         this.title = title
         this.embed = embed
         this.category_id = category_id
