@@ -26,7 +26,9 @@ function fetchVideos(){
     .then(resp => resp.json())
     .then(data => {
         data.data.forEach(video => {
+            // debugger
             let vid = new Video({id: video.id, ...video.attributes})
+            // debugger
             vid.addVideoToDom()
         })
     })

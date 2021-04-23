@@ -22,23 +22,32 @@ class Video {
 
     videoClick = (event) => {
         if (event.target.innerText === "Like: <3"){
-            increaseVideoLikes(event)
+            this.increaseVideoLikes(event)
         } else if (event.target.innerText === "Edit" ){
-            putEditForm(event.target)
+            this.putEditForm(event.target)
             event.target.innerText = "Save"
         } else if (event.target.innerText === "Delete"){
-            deleteVideo(event)
+            this.deleteVideo(event)
         } else if (event.target.innerText === "Save"){
-            saveVideo(event.target)
+            this.saveVideo(event.target)
+            event.target.innerText = "Edit"
         }
+    }
+
+    increaseVideoLikes = (event) => {
+        debugger
+        let i = parseInt(event.target.id.split("-")[1])
+        VideoApi.increaseLikes(i)
+        let n = event.target.parentElement.querySelector('.video-likes').innerText
+        parseInt(n) += 1
     }
 
     createVideo(){
         this.li.innerHTML = `
-            <h3 class="video_title">${this.title}</h3>
-            <div class="video_embed">${this.embed}</div>
-            <div class="video_notes">${this.notes}</div>
-            <div class="video_likes">${this.likes}</div>
+            <h3 class="video-title">${this.title}</h3>
+            <div class="video-embed">${this.embed}</div>
+            <div class="video-notes">${this.notes}</div>
+            <div class="video-likes">${this.likes}</div>
             <button id="like-${this.id}" class="like">Like: <3</button>
             <button id="edit-${this.id}" class="edit">Edit</button>
             <button id="delete-${this.id}" class="delete">Delete</button>
