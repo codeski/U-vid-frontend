@@ -35,11 +35,11 @@ class Video {
     }
 
     increaseVideoLikes = (event) => {
-        debugger
+        // debugger
         let i = parseInt(event.target.id.split("-")[1])
-        VideoApi.increaseLikes(i)
-        let n = event.target.parentElement.querySelector('.video-likes').innerText
-        parseInt(n) += 1
+        VideoApi.increaseLikes(event)
+        // let n = event.target.parentElement.querySelector('.video-likes').innerText
+        // parseInt(n) += 1
     }
 
     createVideo(){
