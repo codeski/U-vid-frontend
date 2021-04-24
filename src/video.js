@@ -25,23 +25,26 @@ class Video {
             VideoApi.increaseLikes(event.target)
         } else if (event.target.innerText === "Edit" ){
             this.editForm(event.target)
-            // event.target.innerText = "Save"
+            event.target.innerText = "Save"
         } else if (event.target.innerText === "Delete"){
             VideoApi.deleteVideo(event.target)
         } else if (event.target.innerText === "Save"){
-            this.saveVideo(event.target)
+            // this.saveVideo(event.target)
             event.target.innerText = "Edit"
         }
     }
 
     editForm = (target) => {
+        debugger
         let v = target.parentElement
-        debugger
+        
         let title = v.querySelector('.video-title')
-        let embed = v.querySelector('.video-embed') 
+        let notes = v.querySelector('.video-notes') 
         let t = title.innerText
+        let n = notes.innerText
         title.innerHTML = `<input type="text" name="title" value=${t}></input>`
-        debugger
+        notes.innerHTML = `<input type="text" name="title" value=${n}></input>`
+        // debugger
 
     }
 

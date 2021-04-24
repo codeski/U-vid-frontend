@@ -6,7 +6,7 @@ videoForm.addEventListener("submit", addNewVideo)
 let categoryDrop = document.getElementById('category_select')
 
 CategoryApi.fetchCategories()
-setTimeout(VideoApi.fetchVideos(), 600)
+setTimeout(VideoApi.fetchVideos(), 30000)
 
 function addNewVideo(e){
     e.preventDefault()
