@@ -6,33 +6,7 @@ videoForm.addEventListener("submit", addNewVideo)
 let categoryDrop = document.getElementById('category_select')
 
 CategoryApi.fetchCategories()
-
-setTimeout(fetchVideos, 400)
-
-function fetchCategories(){
-    fetch(`${BASE_URL}/categories`)
-    .then(resp => resp.json())
-    .then(data => {
-        data.data.forEach(category => {
-            let c = new Category(category.id, category.attributes.name)
-            c.addCategoryToDom()
-            c.addToDropDown()
-        }) 
-    })  
-}
-
-function fetchVideos(){
-    fetch(`${BASE_URL}/videos`)
-    .then(resp => resp.json())
-    .then(data => {
-        data.data.forEach(video => {
-            // debugger
-            let vid = new Video({id: video.id, ...video.attributes})
-            // debugger
-            vid.addVideoToDom()
-        })
-    })
-}
+setTimeout(VideoApi.fetchVideos(), 600)
 
 function addNewVideo(e){
     e.preventDefault()
@@ -69,7 +43,7 @@ function addNewVideo(e){
                 notes: notes,
                 category_id: c.id
             }
-            createVideo(video)
+            VideoApi.createVideo(video)
         })
         
     } else {
@@ -80,43 +54,8 @@ function addNewVideo(e){
             notes: notes,
             category_id: parseInt(category_id)
         }
-        createVideo(video)
+        VideoApi.createVideo(video)
     }
 }
-
-function createVideo(video){
-    fetch(`${BASE_URL}/videos`, {
-        method: "POST",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(video)
-    })
-    .then(resp => resp.json())
-    .then(data => {
-        let v = data.data.attributes
-        let vid = new Video(data.data.id, v.title, v.embed, v.category_id, v.notes, v.likes)
-        vid.addVideoToDom()
-    })
-}
-
-// function deleteVideo(){
-//     let videoId = parseInt(event.target.dataset.id.split("_")[1])
-
-//     fetch(`${BASE_URL}/videos/${videoId}`, {
-//         method: 'DELETE'
-//     })
-// }
-
-// function deleteCategory(){
-//     let categoryId = parseInt(event.target.dataset.id.split("_")[1])
-
-//     fetch(`${BASE_URL}/videos/${categoryId}`, {
-//         method: 'DELETE'
-//     })
-
-//     this.location.reload()
-// }
 
 

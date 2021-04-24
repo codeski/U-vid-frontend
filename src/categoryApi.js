@@ -14,5 +14,3 @@ class CategoryApi {
         })  
     }
 }
-
-CategoryApi.fetchCategories()

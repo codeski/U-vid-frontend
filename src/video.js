@@ -22,27 +22,30 @@ class Video {
 
     videoClick = (event) => {
         if (event.target.innerText === "Like: <3"){
-            this.increaseVideoLikes(event)
+            VideoApi.increaseLikes(event.target)
         } else if (event.target.innerText === "Edit" ){
-            this.putEditForm(event.target)
-            event.target.innerText = "Save"
+            this.editForm(event.target)
+            // event.target.innerText = "Save"
         } else if (event.target.innerText === "Delete"){
-            this.deleteVideo(event)
+            VideoApi.deleteVideo(event.target)
         } else if (event.target.innerText === "Save"){
             this.saveVideo(event.target)
             event.target.innerText = "Edit"
         }
     }
 
-    increaseVideoLikes = (event) => {
-        // debugger
-        let i = parseInt(event.target.id.split("-")[1])
-        VideoApi.increaseLikes(event)
-        // let n = event.target.parentElement.querySelector('.video-likes').innerText
-        // parseInt(n) += 1
+    editForm = (target) => {
+        let v = target.parentElement
+        debugger
+        let title = v.querySelector('.video-title')
+        let embed = v.querySelector('.video-embed') 
+        let t = title.innerText
+        title.innerHTML = `<input type="text" name="title" value=${t}></input>`
+        debugger
+
     }
 
-    createVideo(){
+    renderVideo(){
         this.li.innerHTML = `
             <h3 class="video-title">${this.title}</h3>
             <div class="video-embed">${this.embed}</div>
@@ -57,7 +60,9 @@ class Video {
     }
 
     addVideoToDom(){
+        // debugger
         let ul = document.getElementById(`category-${this.category_id}`)
-        ul.append(this.createVideo())
+
+        ul.append(this.renderVideo())
     }
 }

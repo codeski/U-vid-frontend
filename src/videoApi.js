@@ -1,15 +1,13 @@
 class VideoApi {
-    static videoObj
     
     static BASE_URL = "http://localhost:3000/videos"
 
-    static increaseLikes = (event) => {
+    static increaseLikes = (target) => {
         
-        let i = parseInt(event.target.id.split("-")[1])
-        let n = event.target.parentElement.querySelector('.video-likes').innerText
+        let i = parseInt(target.id.split("-")[1])
+        let n = target.parentElement.querySelector('.video-likes').innerText
         n = parseInt(n)
         n++
-        // debugger
         let videoObj = {
             likes: n
         }
@@ -23,7 +21,69 @@ class VideoApi {
             body: JSON.stringify(videoObj)
         })
         .then(resp => resp.json())
-        .then(data => {event.target.parentElement.querySelector('.video-likes').innerText = n})
-        // debugger
+        .then(data => {target.parentElement.querySelector('.video-likes').innerText = n})
     }
+
+    static deleteVideo = (target) => {
+        // debugger
+        let i = parseInt(target.parentElement.dataset.id)
+        // debugger
+        fetch(this.BASE_URL + `/${i}`, {
+            method: 'DELETE', 
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            }
+        })
+}
+
+    static saveVideo = (target) => {
+        debugger
+        i = parseInt(target.parentElement.dataset.id)
+
+        let videoObj = {
+            likes: n
+        }
+
+        fetch(this.BASE_URL + `/${i}`, {
+            method: "PATCH",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(videoObj)
+        })
+        .then(resp => resp.json())
+        .then(data => {target.parentElement.querySelector('.video-likes').innerText = n})
+
+    }
+
+    static fetchVideos = () => {
+        fetch(this.BASE_URL)
+        .then(resp => resp.json())
+        .then(data => {
+            data.data.forEach(video => {
+                let vid = new Video({id: video.id, ...video.attributes})
+                vid.addVideoToDom()
+            })
+        })
+    }
+
+    static createVideo = (video) => {
+        fetch(this.BASE_URL, {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(video)
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            let vid = new Video({id: data.id, ...data.data.attributes})
+            // debugger
+            vid.addVideoToDom()
+        })
+    }
+
 }
