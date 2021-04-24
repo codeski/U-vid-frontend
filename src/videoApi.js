@@ -25,7 +25,7 @@ class VideoApi {
     }
 
     static deleteVideo = (target) => {
-        // debugger
+        target.parentElement.remove()
         let i = parseInt(target.parentElement.dataset.id)
         // debugger
         fetch(this.BASE_URL + `/${i}`, {
@@ -35,10 +35,10 @@ class VideoApi {
                 "Content-Type": "application/json",
             }
         })
-}
+    }
 
     static saveVideo = (target) => {
-        debugger
+        // debugger
         i = parseInt(target.parentElement.dataset.id)
 
         let videoObj = {

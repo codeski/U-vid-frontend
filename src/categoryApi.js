@@ -13,4 +13,17 @@ class CategoryApi {
             }) 
         })  
     }
+
+    static deleteVideo = (target) => {
+        target.parentElement.style.display = "none"
+        let i = parseInt(target.parentElement.dataset.id)
+        // debugger
+        fetch(this.BASE_URL + `/${i}`, {
+            method: 'DELETE', 
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            }
+        })
+    }
 }

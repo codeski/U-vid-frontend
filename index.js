@@ -22,7 +22,6 @@ function addNewVideo(e){
         let cat = {
             name: category
         }
-        // debugger
         fetch(`${BASE_URL}/categories`, {
             method: "POST",
             headers: {
@@ -36,7 +35,6 @@ function addNewVideo(e){
             c = new Category(data.data.id, data.data.attributes.name)
             c.addCategoryToDom()
             c.addToDropDown()
-            // debugger
             video = {
                 title: title,
                 embed: embed,
@@ -44,6 +42,7 @@ function addNewVideo(e){
                 category_id: c.id
             }
             VideoApi.createVideo(video)
+            videoForm.reset()
         })
         
     } else {
@@ -55,6 +54,7 @@ function addNewVideo(e){
             category_id: parseInt(category_id)
         }
         VideoApi.createVideo(video)
+        videoForm.reset()
     }
 }
 
