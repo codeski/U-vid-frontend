@@ -37,12 +37,12 @@ class VideoApi {
         })
     }
 
-    static saveVideo = (target) => {
-        // debugger
-        i = parseInt(target.parentElement.dataset.id)
+    static saveVideo = (video) => {
+        let i = video.id
 
         let videoObj = {
-            likes: n
+            notes: video.notes,
+            title: video.title
         }
 
         fetch(this.BASE_URL + `/${i}`, {
@@ -54,7 +54,7 @@ class VideoApi {
             body: JSON.stringify(videoObj)
         })
         .then(resp => resp.json())
-        .then(data => {target.parentElement.querySelector('.video-likes').innerText = n})
+        .then(data => {video.renderVideo()})
 
     }
 

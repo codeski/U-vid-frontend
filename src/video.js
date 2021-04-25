@@ -29,21 +29,28 @@ class Video {
         } else if (event.target.innerText === "Delete"){
             VideoApi.deleteVideo(event.target)
         } else if (event.target.innerText === "Save"){
-            // this.saveVideo(event.target)
+            this.saveVideo(event.target)
             event.target.innerText = "Edit"
         }
     }
 
+    saveVideo = () => {
+        
+        this.notes = this.li.querySelector('#notes').value
+        this.title = this.li.querySelector('#title').value
+        VideoApi.saveVideo(this)
+    }
+
     editForm = (target) => {
-        debugger
+        // debugger
         let v = target.parentElement
         
         let title = v.querySelector('.video-title')
         let notes = v.querySelector('.video-notes') 
         let t = title.innerText
         let n = notes.innerText
-        title.innerHTML = `<input type="text" name="title" value=${t}></input>`
-        notes.innerHTML = `<input type="text" name="title" value=${n}></input>`
+        title.innerHTML = `<input id="title" type="text" name="title" value=${t}></input>`
+        notes.innerHTML = `<input id="notes" type="text" name="title" value=${n}></input>`
         // debugger
 
     }
