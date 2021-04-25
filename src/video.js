@@ -35,7 +35,6 @@ class Video {
     }
 
     saveVideo = () => {
-        
         this.notes = this.li.querySelector('#notes').value
         this.title = this.li.querySelector('#title').value
         VideoApi.saveVideo(this)

@@ -24,6 +24,19 @@ class VideoApi {
         .then(data => {target.parentElement.querySelector('.video-likes').innerText = n})
     }
 
+    static deleteVideosOfCategory = (video) => {
+        // debugger
+        let i = video.id
+        // debugger
+        fetch(this.BASE_URL + `/${i}`, {
+            method: 'DELETE', 
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            }
+        })
+    }
+
     static deleteVideo = (target) => {
         target.parentElement.remove()
         let i = parseInt(target.parentElement.dataset.id)

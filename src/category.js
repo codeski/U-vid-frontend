@@ -11,7 +11,7 @@ class Category {
         // this.div.id = `category-${id}`
         this.div.dataset.id = id
         this.div.classList.add("category")
-        
+
         Category.all.push(this)
         this.div.addEventListener("click", this.editOrDelete)
     }
@@ -34,13 +34,29 @@ class Category {
         } else if (event.target.innerText === "Delete"){
             CategoryApi.deleteCategory(event.target)
         } else if (event.target.innerText === "Save"){
-
+            this.saveCategory(event.target)
+            event.target.innerText = "Edit"
         }
 
     }
 
+    saveCategory = () => {
+        let newName = this.div.querySelector('.cat-edit-input').value
+        this.name = newName
+        this.div.querySelector('.category-buttons').style.display = "none"
+        this.changeNames()
+        // this.div.parentElement.parentElement.querySelector('h2').innerHTML = `${this.name}`
+        CategoryApi.saveCategory(this)
+    }
+
+    changeNames = () => {
+        this.div.parentElement.parentElement.querySelector('h2').innerHTML = `${this.name}`
+        
+        let selections = categoryDrop.querySelectorAll('option')
+        debugger
+    }
+
     editCategory = (target) => {
-        let id = target.parentElement.parentElement.dataset.id
         let nameField = target.parentElement.parentElement.querySelector('h2')
         let name = target.parentElement.parentElement.querySelector('h2').innerText
         nameField.innerHTML = `<input class="cat-edit-input" name="cat-edit-input" value=${name}></input>`
