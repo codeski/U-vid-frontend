@@ -8,29 +8,15 @@ class Category {
         this.id = parseInt(id)
         this.name = name
         this.div = document.createElement('div')
+        // this.div.id = `category-${id}`
+        this.div.dataset.id = id
         this.div.classList.add("category")
         
         Category.all.push(this)
         this.div.addEventListener("click", this.editOrDelete)
     }
-
-    // const addBtn = document.querySelector("#new-toy-btn");
-    // const toyFormContainer = document.querySelector(".container");
-    // addBtn.addEventListener("click", () => {
-    //   // hide & seek with the form
-    //   addToy = !addToy;
-    //   if (addToy) {
-    //     toyFormContainer.style.display = "block";
-    //   } else {
-    //     toyFormContainer.style.display = "none";
-    //   }
     
     editOrDelete = (event) => {
-        // let buttonContainer = document.querySelector(".category-buttons")
-        
-        
-        // buttonContainer.append(buttons)
-
         if(event.target.innerText === `${this.name}`){
             // debugger
             let buttonContainer
@@ -43,11 +29,21 @@ class Category {
                 buttonContainer.style.display = "none"
             }
         } else if (event.target.innerText === "Edit"){
-            debugger
+            this.editCategory(event.target)
+            event.target.innerText = "Save"
         } else if (event.target.innerText === "Delete"){
-            debugger
+            CategoryApi.deleteCategory(event.target)
+        } else if (event.target.innerText === "Save"){
+
         }
 
+    }
+
+    editCategory = (target) => {
+        let id = target.parentElement.parentElement.dataset.id
+        let nameField = target.parentElement.parentElement.querySelector('h2')
+        let name = target.parentElement.parentElement.querySelector('h2').innerText
+        nameField.innerHTML = `<input class="cat-edit-input" name="cat-edit-input" value=${name}></input>`
     }
 
     createCategory(){
