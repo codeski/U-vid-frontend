@@ -26,14 +26,18 @@ class Category {
     //   }
     
     editOrDelete = (event) => {
-        let buttonContainer = document.querySelector(".category-buttons")
-        buttonContainer.innerHTML = `<button>Edit</button><button>Delete</button>`
+        // let buttonContainer = document.querySelector(".category-buttons")
+        
+        
         // buttonContainer.append(buttons)
 
         if(event.target.innerText === `${this.name}`){
+            // debugger
+            let buttonContainer
+            buttonContainer = this.div.querySelector(".category-buttons")
+            buttonContainer.innerHTML = `<button>Edit</button><button>Delete</button>`
             displayButtons = !displayButtons
             if(displayButtons){
-                
                 buttonContainer.style.display = "block"
             } else {
                 buttonContainer.style.display = "none"
