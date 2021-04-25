@@ -6,7 +6,6 @@ videoForm.addEventListener("submit", addNewVideo)
 let categoryDrop = document.getElementById('category_select')
 
 CategoryApi.fetchCategories()
-setTimeout(VideoApi.fetchVideos(), 70000)
 
 function addNewVideo(e){
     e.preventDefault()
@@ -15,9 +14,8 @@ function addNewVideo(e){
     let notes = document.getElementById("notes").value
     let category = document.getElementById("category_input").value
     let categoryDrop = document.getElementById("category_select")
-    // let selection = categoryDrop.options[categoryDrop.selectedIndex].text  
-    let video
 
+    let video
     if (categoryDrop.value === ""){
         let cat = {
             name: category

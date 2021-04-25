@@ -9,11 +9,22 @@ class Category {
         this.div.classList.add("category")
         
         Category.all.push(this)
+        // this.div.addEventListener("click", this.editOrDelete)
+    }
+
+    editOrDelete = (event) => {
+        debugger
+
+    }
+
+    editOrDelete = () => {
+        debugger
     }
 
     createCategory(){
         this.div.innerHTML = `
             <h2>${this.name}</h2>
+
             <ul id="category-${this.id}"></ul>
         `
 
