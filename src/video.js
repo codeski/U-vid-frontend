@@ -3,7 +3,6 @@ class Video {
     static all = []
 
     constructor({id, title, embed, category_id, notes, likes}){
-        // debugger
         this.id = parseInt(id)
         this.title = title
         this.embed = embed
@@ -41,7 +40,6 @@ class Video {
     }
 
     editForm = (target) => {
-        // debugger
         let v = target.parentElement
         
         let title = v.querySelector('.video-title')
@@ -50,8 +48,6 @@ class Video {
         let n = notes.innerText
         title.innerHTML = `<input id="title" type="text" name="title" value=${t}></input>`
         notes.innerHTML = `<input id="notes" type="text" name="title" value=${n}></input>`
-        // debugger
-
     }
 
     renderVideo(){
@@ -69,7 +65,6 @@ class Video {
     }
 
     addVideoToDom(){
-        // debugger
         let ul = document.getElementById(`category-${this.category_id}`)
 
         ul.append(this.renderVideo())

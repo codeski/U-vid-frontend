@@ -8,7 +8,6 @@ class Category {
         this.id = parseInt(id)
         this.name = name
         this.div = document.createElement('div')
-        // this.div.id = `category-${id}`
         this.div.dataset.id = id
         this.div.classList.add("category")
 
@@ -18,7 +17,6 @@ class Category {
     
     editOrDelete = (event) => {
         if(event.target.innerText === `${this.name}`){
-            // debugger
             let buttonContainer
             buttonContainer = this.div.querySelector(".category-buttons")
             buttonContainer.innerHTML = `<button>Edit</button><button>Delete</button>`
@@ -44,9 +42,9 @@ class Category {
         let newName = this.div.querySelector('.cat-edit-input').value
         this.name = newName
         this.div.querySelector('.category-buttons').style.display = "none"
-        // debugger
+
         this.changeNames()
-        // this.div.parentElement.parentElement.querySelector('h2').innerHTML = `${this.name}`
+
         CategoryApi.saveCategory(this)
     }
 
@@ -55,8 +53,6 @@ class Category {
         let id = this.id + '-category'
         let selections = document.getElementById(id)
         selections.innerText = this.name
-        // debugger        
-        // debugger
     }
 
     editCategory = (target) => {
@@ -71,7 +67,6 @@ class Category {
         this.div.innerHTML = `
             <h2>${this.name}</h2>
             <div class="category-buttons">
-
             </div>
             <ul id="category-${this.id}"></ul>
         `

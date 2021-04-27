@@ -32,7 +32,6 @@ class CategoryApi {
 
     static saveCategory = (category) => {
         let i = category.id
-        // debugger
 
         let catObj = {
             name: category.name
@@ -48,6 +47,5 @@ class CategoryApi {
         })
         .then(resp => resp.json())
         .then(data => console.log("victory"))
-
     }
 }
