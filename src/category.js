@@ -12,14 +12,16 @@ class Category {
         this.div.classList.add("category")
 
         Category.all.push(this)
-        this.div.addEventListener("click", this.editOrDelete)
     }
     
     editOrDelete = (event) => {
+        // debugger
         if(event.target.innerText === `${this.name}`){
+            
             let buttonContainer
             buttonContainer = this.div.querySelector(".category-buttons")
             buttonContainer.innerHTML = `<button>Edit</button><button>Delete</button>`
+            buttonContainer.addEventListener('click', this.editOrDelete)
             displayButtons = !displayButtons
             if(displayButtons){
                 buttonContainer.style.display = "block"
@@ -27,11 +29,14 @@ class Category {
                 buttonContainer.style.display = "none"
             }
         } else if (event.target.innerText === "Edit"){
+            console.log("clicked edit")
             this.editCategory(event.target)
             event.target.innerText = "Save"
         } else if (event.target.innerText === "Delete"){
             CategoryApi.deleteCategory(event.target)
         } else if (event.target.innerText === "Save"){
+            // debugger
+            console.log("clicked save")
             this.saveCategory(event.target)
             event.target.innerText = "Edit"
         }
@@ -72,6 +77,8 @@ class Category {
             </div>
             <ul id="category-${this.id}"></ul>
         `
+        // debugger
+        this.div.querySelector('h2').addEventListener("click", this.editOrDelete)
 
         return this.div
     }
