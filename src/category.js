@@ -41,6 +41,7 @@ class Category {
     saveCategory = () => {
         let newName = this.div.querySelector('.cat-edit-input').value
         this.name = newName
+        // debugger
         this.div.querySelector('.category-buttons').style.display = "none"
 
         this.changeNames()
@@ -49,7 +50,8 @@ class Category {
     }
 
     changeNames = () => {
-        this.div.parentElement.parentElement.querySelector('h2').innerText = this.name
+        this.div.querySelector('h2').innerHTML = this.name
+        // debugger
         let id = this.id + '-category'
         let selections = document.getElementById(id)
         selections.innerText = this.name

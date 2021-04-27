@@ -48,14 +48,14 @@ class VideoApi {
         })
     }
 
-    static saveVideo = (video) => {
+    static updateVideo = (video) => {
         let i = video.id
 
         let videoObj = {
             notes: video.notes,
             title: video.title
         }
-
+        // debugger
         fetch(this.BASE_URL + `/${i}`, {
             method: "PATCH",
             headers: {
@@ -65,7 +65,7 @@ class VideoApi {
             body: JSON.stringify(videoObj)
         })
         .then(resp => resp.json())
-        .then(data => {video.renderVideo()})
+        .then(data => {})
     }
 
     static fetchVideos = () => {

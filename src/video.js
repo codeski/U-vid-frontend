@@ -28,37 +28,46 @@ class Video {
         } else if (event.target.innerText === "Delete"){
             VideoApi.deleteVideo(event.target)
         } else if (event.target.innerText === "Save"){
+            
+            // debugger
             this.saveVideo(event.target)
             event.target.innerText = "Edit"
         }
     }
 
-    saveVideo = () => {
+    saveVideo = (t) => {
+        // debugger
         this.notes = this.li.querySelector('#notes').value
         this.title = this.li.querySelector('#title').value
-        VideoApi.saveVideo(this)
+        this.li.querySelector('h3').innerHTML = this.title
+        this.li.querySelector('p').innerHTML = this.notes
+        // debugger
+        // VideoApi.updateVideo(this)
     }
 
     editForm = (target) => {
-        let v = target.parentElement
-        
+        let v = target.parentElement.parentElement
+        // debugger
         let title = v.querySelector('.video-title')
         let notes = v.querySelector('.video-notes') 
         let t = title.innerText
         let n = notes.innerText
-        title.innerHTML = `<input id="title" type="text" name="title" value=${t}></input>`
-        notes.innerHTML = `<input id="notes" type="text" name="title" value=${n}></input>`
+        title.innerHTML = `<input id="title" type="text" name="title" value="${t}"></input>`
+        notes.innerHTML = `<input id="notes" type="text" name="title" value="${n}"></input>`
+        // debugger
     }
 
     renderVideo(){
         this.li.innerHTML = `
             <h3 class="video-title">${this.title}</h3>
             <div class="video-embed">${this.embed}</div>
-            <div class="video-notes">${this.notes}</div>
+            <p class="video-notes">${this.notes}</p>
             <div class="video-likes">${this.likes}</div>
-            <button id="like-${this.id}" class="like">Like: <3</button>
-            <button id="edit-${this.id}" class="edit">Edit</button>
-            <button id="delete-${this.id}" class="delete">Delete</button>
+            <div class="buttons">
+                <button id="like-${this.id}" class="like">Like: <3</button>
+                <button id="edit-${this.id}" class="edit">Edit</button>
+                <button id="delete-${this.id}" class="delete">Delete</button>
+            </div>
         `
         
         return this.li
