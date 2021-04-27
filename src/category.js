@@ -44,22 +44,27 @@ class Category {
         let newName = this.div.querySelector('.cat-edit-input').value
         this.name = newName
         this.div.querySelector('.category-buttons').style.display = "none"
+        // debugger
         this.changeNames()
         // this.div.parentElement.parentElement.querySelector('h2').innerHTML = `${this.name}`
         CategoryApi.saveCategory(this)
     }
 
     changeNames = () => {
-        this.div.parentElement.parentElement.querySelector('h2').innerHTML = `${this.name}`
-        
-        let selections = categoryDrop.querySelectorAll('option')
-        debugger
+        this.div.parentElement.parentElement.querySelector('h2').innerText = this.name
+        let id = this.id + '-category'
+        let selections = document.getElementById(id)
+        selections.innerText = this.name
+        // debugger        
+        // debugger
     }
 
     editCategory = (target) => {
-        let nameField = target.parentElement.parentElement.querySelector('h2')
-        let name = target.parentElement.parentElement.querySelector('h2').innerText
-        nameField.innerHTML = `<input class="cat-edit-input" name="cat-edit-input" value=${name}></input>`
+        let name = target.parentElement.parentElement.firstElementChild.innerText
+        let nameField = target.parentElement.parentElement.firstElementChild
+       
+        // debugger
+        nameField.innerHTML = `<input class="cat-edit-input" name="cat-edit-input" value="${name}"></input>`
     }
 
     createCategory(){
@@ -80,6 +85,7 @@ class Category {
 
     addToDropDown(){
         const option = document.createElement('option')
+        option.id = `${this.id}-category`
         option.value  = this.id 
         option.innerText = this.name
         categoryDrop.append(option)
