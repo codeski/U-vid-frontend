@@ -15,7 +15,6 @@ class Category {
     }
     
     editOrDelete = (event) => {
-        // debugger
         if(event.target.innerText === `${this.name}`){
             
             let buttonContainer
@@ -35,7 +34,6 @@ class Category {
         } else if (event.target.innerText === "Delete"){
             CategoryApi.deleteCategory(event.target)
         } else if (event.target.innerText === "Save"){
-            // debugger
             console.log("clicked save")
             this.saveCategory(event.target)
             event.target.innerText = "Edit"
@@ -46,7 +44,6 @@ class Category {
     saveCategory = () => {
         let newName = this.div.querySelector('.cat-edit-input').value
         this.name = newName
-        // debugger
         this.div.querySelector('.category-buttons').style.display = "none"
 
         this.changeNames()
@@ -56,7 +53,6 @@ class Category {
 
     changeNames = () => {
         this.div.querySelector('h2').innerHTML = this.name
-        // debugger
         let id = this.id + '-category'
         let selections = document.getElementById(id)
         selections.innerText = this.name
@@ -65,8 +61,7 @@ class Category {
     editCategory = (target) => {
         let name = target.parentElement.parentElement.firstElementChild.innerText
         let nameField = target.parentElement.parentElement.firstElementChild
-       
-        // debugger
+
         nameField.innerHTML = `<input class="cat-edit-input" name="cat-edit-input" value="${name}"></input>`
     }
 
@@ -77,7 +72,6 @@ class Category {
             </div>
             <ul id="category-${this.id}"></ul>
         `
-        // debugger
         this.div.querySelector('h2').addEventListener("click", this.editOrDelete)
 
         return this.div
