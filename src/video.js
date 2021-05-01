@@ -44,7 +44,7 @@ class Video {
     }
 
     editForm = (target) => {
-        let v = target.parentElement.parentElement
+        let v = target.parentElement
         
         let title = v.querySelector('.video-title')
         let notes = v.querySelector('.video-notes') 
@@ -60,14 +60,10 @@ class Video {
             <div class="video-embed">${this.embed}</div>
             <p class="video-notes">${this.notes}</p>
             <div class="video-likes">${this.likes}</div>
-            <button id="like-${this.id}" class="like">Like: <3</button>
-            <div class="buttons">
-                
-                <button id="edit-${this.id}" class="edit">Edit</button>
-                <button id="delete-${this.id}" class="delete">Delete</button>
-            </div>
+            <button id="like-${this.id}" class="like">Like: <3</button>    
+            <button id="edit-${this.id}" class="edit">Edit</button>
+            <button id="delete-${this.id}" class="delete">Delete</button>
         `
-        
         return this.li
     }
 
