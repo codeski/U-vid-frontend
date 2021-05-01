@@ -25,6 +25,7 @@ class VideoApi {
 
     static deleteVideosOfCategory = (video) => {
         let i = video.id
+        // debugger
         
         fetch(this.BASE_URL + `/${i}`, {
             method: 'DELETE', 

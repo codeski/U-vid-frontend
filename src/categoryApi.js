@@ -16,14 +16,8 @@ class CategoryApi {
     }
 
     static deleteCategory = (target) => {
-        let i = parseInt(target.parentElement.parentElement.dataset.id)
-        target.parentElement.parentElement.style.display = "none"
-        // debugger
-        document.getElementById(`${i}-category`).remove()
+        let i = target.parentElement.parentElement.dataset.id
 
-        Video.all.forEach(video => {if(video.category_id === i)
-                                    {VideoApi.deleteVideosOfCategory(video)}
-        })
         fetch(this.baseUrl + `/${i}`, {
             method: 'DELETE', 
             headers: {
@@ -31,6 +25,10 @@ class CategoryApi {
                 "Content-Type": "application/json",
             }
         })
+        
+        document.getElementById(`${i}-category`).remove()
+        target.parentElement.parentElement.remove()
+        // Video.all.forEach(video => {if(video.category_id === i){VideoApi.deleteVideosOfCategory(video)}})
     }
 
     static saveCategory = (category) => {
