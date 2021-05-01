@@ -18,6 +18,9 @@ class CategoryApi {
     static deleteCategory = (target) => {
         let i = parseInt(target.parentElement.parentElement.dataset.id)
         target.parentElement.parentElement.style.display = "none"
+        // debugger
+        document.getElementById(`${i}-category`).remove()
+
         Video.all.forEach(video => {if(video.category_id === i)
                                     {VideoApi.deleteVideosOfCategory(video)}
         })
