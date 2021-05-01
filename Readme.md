@@ -1,7 +1,7 @@
 # README
 
 ## Description
-"U Videos" is a single page application written in OO JavaScript that stores all the videos you want to organize by category using a Rails backend server. You will have full CRUD functionality of Videos and Categories without having to refresh the page.  
+"U Videos" is a single page application written in OO JavaScript that stores all the videos you want to organize by category using a Rails API backend server. You will have full CRUD functionality of Videos and Categories without having to refresh the page.  
 
 Video Demo - 
 
@@ -24,9 +24,6 @@ cd U-vid-api
 bundle install
 open index.html
 ```
-
-## Contributors Guide
-Todd Stoneberg
 
 ## Link to License
 [MIT](https://choosealicense.com/licenses/mit/)

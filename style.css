@@ -1,0 +1,32 @@
+#add-video-form {
+    display: block;
+    text-align: center;
+    margin: auto;
+}
+
+h1 {
+    color: blue;
+    text-shadow: 0 0 0px #000;
+    font-size: 70px;
+    text-align: center
+}
+
+h2 {
+    color: #cc2626;
+    font-size: 30px;
+    text-shadow: 0 0 0px #000;
+}
+
+.category ul {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.category li {
+    padding: 1px 1px 1px 10px;
+}
+
+body {
+    background-color:#deffed;
+}
