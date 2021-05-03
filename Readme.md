@@ -21,7 +21,6 @@ JavaScript/HTML/CSS Frontend:
 ```
 git@github.com:codeski/U-vid-frontend.git
 cd U-vid-api
-bundle install
 open index.html
 ```
 
