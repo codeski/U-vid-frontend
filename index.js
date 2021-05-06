@@ -5,7 +5,33 @@ const videoForm = document.getElementById("add-video-form")
 videoForm.addEventListener("submit", addNewVideo)
 let categoryDrop = document.getElementById('category_select')
 
+let catSearch = document.getElementById('cat-input')
+let catSubmit = document.getElementById('cat-submit')
+catSubmit.addEventListener('click', handleSearch)
+
 CategoryApi.fetchCategories()
+
+function handleSearch(){
+    let search = catSearch.value
+    let returned = Category.all.filter(category => {return category.name.includes(search)})
+
+    let videos = Video.all
+    
+    if (returned.length > 0){
+        videoList.innerHTML = ""
+        returned.forEach(category => {
+            category.addCategoryToDom()
+            for(const video of videos){
+                if (category.id === video.category_id) {
+                    video.addVideoToDom()
+                }
+            }
+        })
+    } 
+    catSearch.value = ""
+}
+
+function addVideos(){}
 
 function addNewVideo(e){
     e.preventDefault()

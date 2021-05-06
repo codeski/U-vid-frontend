@@ -12,7 +12,7 @@ class CategoryApi {
                 c.addToDropDown()
             }) 
         })
-        .then(setTimeout(function(){VideoApi.fetchVideos()}, 100))  
+        .then(VideoApi.fetchVideos)
     }
 
     static deleteCategory = (target) => {
